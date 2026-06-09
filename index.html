@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Study Materials </title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  color: white;
+}
+
+/* TOP BAR */
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 25px;
+}
+header h1 {
+  font-size: 42px;
+  margin: 0;
+}
+header p {
+  color: #94a3b8;
+}
+
+/* SEARCH */
+.search-box {
+  text-align: center;
+}
+input {
+  width: 80%;
+  max-width: 500px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+}
+
+/* QUICK BAR */
+.quick {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.quick button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  cursor: pointer;
+}
+.quick button:hover {
+  background: #38bdf8;
+  color: black;
+}
+
+/* GRID */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 15px;
+  transition: 0.3s;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.12);
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+/* STAR */
+.star {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  opacity: 0.4;
+}
+.star.active {
+  color: gold;
+  opacity: 1;
+}
+
+/* HIDE */
+.hide { display:none; }
+
+/* MODAL PREVIEW */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+  z-index: 10000;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div>📚 Student Study Materials</div>
+</nav>
+
+<header>
+  <h1>📚 Student Study Materials</h1>
+  <p>สร้างขึ้น by T.</p>
+</header>
+
+<!-- SEARCH -->
+<div class="search-box">
+  <input id="search" onkeyup="search()" placeholder="🔍 ค้นหาไฟล์ / วิชา / keyword">
+</div>
+
+<!-- QUICK FILTER -->
+<div class="quick">
+  <button onclick="filter('all')">ทั้งหมด</button>
+  <button onclick="filter('math')">คณิต</button>
+  <button onclick="filter('science')">เคมี</button>
+  <button onclick="filter('E')">เขียนแบบ</button>
+  <button onclick="filter('S')">แผนการเรียน</button>
+  <button onclick="filter('SSS')">รวมไฟล์</button>
+  <button onclick="showFav()">⭐ Favorite</button>
+</div>
+
+<div class="container">
+
+<!-- MATH -->
+<section data-type="math">
+  <h2>📘 คณิตศาสตร์</h2>
+
+  <div class="grid">
+
+    <div class="card" data-text="math exercise practice">
+      <div class="star" onclick="fav(this)">★</div>
+      <div class="title">Math - แบบฝึกหัด แคล1</div>
+      <div>โจทย์ฝึกทำ *หมายเหตุ!! เป็นไฟล์เฉลย</div>
+
+      <a class="btn" href="files/Math/cal-1.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-2.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-3.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-4.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-5.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-6.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-7.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-8.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-9.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-10.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math/cal-11.pdf" download>ดาวน์โหลด</a>
+
+      <button class="btn" onclick="preview('files/Math/cal-1.pdf')">👁 Preview</button>
+    </div>
+
+
+
+<div class="card" data-text="math exercise practice">
+      <div class="star" onclick="fav(this)">★</div>
+      <div class="title">Math - แบบฝึกหัด แคล2</div>
+      <div>โจทย์ฝึกทำ *หมายเหตุ!! เป็นไฟล์เฉลย</div>
+
+      <a class="btn" href="files/Math2/cal2-1.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math2/cal2-2.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math2/cal2-3.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math2/cal2-4.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/Math2/cal2-5.pdf" download>ดาวน์โหลด</a>
+
+      <button class="btn" onclick="preview('files/Math2/cal2-1.pdf')">👁 Preview</button>
+    </div>
+
+
+
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section data-type="science">
+  <h2>🔬 เคมี</h2>
+
+  <div class="grid">
+
+    <div class="card" data-text="physics force motion">
+      <div class="star" onclick="fav(this)">★</div>
+      <div class="title">เคมี </div>
+      <div>ควิซแลปเคมี</div>
+
+      <a class="btn" href="files/เคมี/ควิซแลป.pdf" download>ดาวน์โหลด</a>
+      <button class="btn" onclick="preview('files/เคมี/ควิซแลป.pdf')">👁 Preview</button>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ENGLISH -->
+<section data-type="E">
+  <h2>📖 เขียนแบบ</h2>
+
+  <div class="grid">
+
+    <div class="card" data-text="english grammar basic">
+      <div class="star" onclick="fav(this)">★</div>
+      <div class="title">เขียนแบบ</div>
+      <div>ข้อสอบที่ออก</div>
+
+      <a class="btn" href="files/เขียนแบบ/drawings.pdf" download>ดาวน์โหลด</a>
+      <button class="btn" onclick="preview('files/เขียนแบบ/drawings.pdf')">👁 Preview</button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- SCIENCE -->
+<section data-type="S">
+  <h2> แผนการเรียน</h2>
+
+  <div class="grid">
+
+    <div class="card" data-text="physics force motion">
+      <div class="star" onclick="fav(this)">★</div>
+      <div class="title">แผนการเรียน รุ่นำี่ปี 68</div>
+      <div>แผนการเรียน A-F</div>
+
+      <a class="btn" href="files/A-F/A.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/A-F/B.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/A-F/C.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/A-F/D.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/A-F/E.pdf" download>ดาวน์โหลด</a>
+      <a class="btn" href="files/A-F/F.pdf" download>ดาวน์โหลด</a>
+      <button class="btn" onclick="preview('files/A-F/A.pdf')">👁 Preview</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section data-type="SSS">
+  <h2> ไฟล์ทุกวิชา</h2>
+
+  <div class="grid">
+
+    <div class="card" data-text="physics force motion">
+      <div class="star" onclick="fav(this)">★</div>
+      <div class="title">รวมไฟล์ทุกวิชาแต่ละปี</div>
+      <div>ไฟล์การเรียน หมายเหตุ!! เยอะมากหาเอาเองนะเป็นไฟล์ zip แตกไฟล์แล้วเลือกไฟล์เอา </div>
+
+      <a class="btn" href="files/All/ปี1.zip" download>ดาวน์โหลด</a>
+
+      <button class="btn" onclick="preview('files/All/ปี1.zip')">👁 Preview</button>
+    </div>
+
+  </div>
+</section>
+
+
+
+</div>
+
+<!-- PREVIEW MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="close" onclick="closePreview()">✖</div>
+    <iframe id="frame"></iframe>
+  </div>
+</div>
+
+<script>
+
+/* FILTER */
+function filter(type){
+  document.querySelectorAll("section").forEach(s=>{
+    s.style.display = (type==="all" || s.dataset.type===type) ? "block":"none";
+  });
+}
+
+/* SEARCH */
+function search(){
+  let val = document.getElementById("search").value.toLowerCase();
+
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display = c.dataset.text.includes(val) ? "block":"none";
+  });
+}
+
+/* FAVORITE */
+function fav(el){
+  el.classList.toggle("active");
+
+  let favs = JSON.parse(localStorage.getItem("fav")||"[]");
+  let text = el.parentElement.innerText;
+
+  if(el.classList.contains("active")){
+    favs.push(text);
+  } else {
+    favs = favs.filter(f=>!f.includes(text));
+  }
+
+  localStorage.setItem("fav", JSON.stringify(favs));
+}
+
+/* SHOW FAVORITE */
+function showFav(){
+  let favs = JSON.parse(localStorage.getItem("fav")||"[]");
+
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display = favs.some(f=>c.innerText.includes(f)) ? "block":"none";
+  });
+}
+
+/* PREVIEW */
+function preview(file){
+  document.getElementById("frame").src = file;
+  document.getElementById("modal").style.display = "block";
+}
+
+function closePreview(){
+  document.getElementById("modal").style.display = "none";
+  document.getElementById("frame").src = "";
+}
+
+</script>
+
+</body>
+</html>
